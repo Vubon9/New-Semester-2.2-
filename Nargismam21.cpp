@@ -1,4 +1,4 @@
-/* #include<bits/stdc++.h>
+ #include<bits/stdc++.h>
  using namespace std;
  double fun(double x)
  {
@@ -24,7 +24,8 @@ int main()
 
 
 }
-*/
+
+Bisection Method
 #include <iostream>
 #include <cmath>
 #include <iomanip> // For setting decimal precision
