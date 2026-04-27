@@ -6,7 +6,12 @@
  }
 int main()
 {
-    double a=0, b= 1,c;
+    double a,b,c;
+    cout<<"Enter the value of a and b;
+    cin>>a>>b;
+    if(fun(a)*func(b)>0){
+     cout<<"Error";
+     return 0;
     for(int i=1;i<= 15;i++){
         c=(a+b)/2;
         if(fun(c)==0){
@@ -26,53 +31,54 @@ int main()
 }
 
 Bisection Method
-#include <iostream>
-#include <cmath>
-#include <iomanip> // For setting decimal precision
-
+#include<bits/stdc++.h>
 using namespace std;
-
 double fun(double x) {
     return 3 * x - cos(x) - 1;
 }
-
 int main() {
     double a = 0, b = 1, c;
+    // Table header
+    cout << setw(5) << "Iter"
+         << setw(12) << "a"
+         << setw(12) << "b"
+         << setw(12) << "f(a)"
+         << setw(12) << "f(b)"
+         << setw(12) << "c(a+b/2)"
+         << setw(12) << "f(c)" << endl;
 
-    // Header for the table
-    cout << setw(5) << "Iter" << setw(12) << "a" << setw(12) << "b"
-         << setw(12) << "c (mid)" << setw(12) << "f(c)" << endl;
-    cout << "------------------------------------------------------------" << endl;
-
+    cout << " " << endl;
     for (int i = 1; i <= 15; i++) {
-        // 1. Correct Midpoint Calculation
         c = (a + b) / 2.0;
 
+        double fa = fun(a);
+        double fb = fun(b);
         double fc = fun(c);
 
-        // Display current iteration values
+        // Print all values correctly
         cout << setw(5) << i
              << fixed << setprecision(6)
              << setw(12) << a
              << setw(12) << b
+             << setw(12) << fa
+             << setw(12) << fb
              << setw(12) << c
              << setw(12) << fc << endl;
 
-        // 2. Exact root check
-        if (abs(fc) < 1e-9) {
+        // Stopping condition
+        if (fabs(fc) < 1e-9) {
             break;
         }
 
-        // 3. Update boundaries correctly
-        if (fun(a) * fc < 0) {
-            b = c; // Root is in left half [a, c]
+        // Update interval
+        if (fa * fc < 0) {
+            b = c;
         } else {
-            a = c; // Root is in right half [c, b]
+            a = c;
         }
     }
 
-    cout << " " << endl;
-    cout << "FINAL ROOT: " << c << endl;
+    cout << "\nFINAL ROOT: " << c << endl;
 
     return 0;
 }
